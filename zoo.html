@@ -32,7 +32,7 @@
             overflow: hidden;
         }
 
-        /* --- TELA DE LOGIN --- */
+        /* --- TELA DE LOGIN E REDEFINIÇÃO --- */
         .login-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -49,8 +49,14 @@
         .login-box .brand { justify-content: center; color: var(--verde-floresta); font-size: 26px; margin-bottom: 25px; border: none; }
         .login-box h2 { font-size: 18px; color: var(--cinza-escuro); margin-bottom: 20px; }
         .login-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        
+        .login-form-block, .forgot-form-block { display: none; }
+        .login-form-block.active, .forgot-form-block.active { display: block; }
 
-        /* --- BARRA LATERAL (SIDEBAR AMBIENTADA COM ÍCONES DO ZOO) --- */
+        .link-forgot { font-size: 13px; color: var(--verde-claro); text-decoration: none; display: inline-block; margin-top: 10px; cursor: pointer; font-weight: 500; }
+        .link-forgot:hover { text-decoration: underline; color: var(--verde-floresta); }
+
+        /* --- BARRA LATERAL --- */
         .sidebar { width: 280px; background-color: var(--verde-floresta); color: var(--branco); display: flex; flex-direction: column; justify-content: space-between; padding: 20px; flex-shrink: 0; }
         .brand { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: bold; padding-bottom: 20px; border-bottom: 1px solid var(--verde-claro); }
         .menu { margin-top: 20px; display: flex; flex-direction: column; gap: 5px; flex-grow: 1; overflow-y: auto; }
@@ -78,10 +84,11 @@
         .animal-show-card:hover { transform: scale(1.03); border-color: var(--verde-claro); }
         .animal-large-photo { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid var(--verde-claro); background-color: var(--areia-escura); display: block; }
         .animal-show-info { padding: 12px 10px 0 10px; }
-        .animal-show-name { font-size: 19px; color: var(--verde-floresta); font-weight: bold; margin-bottom: 6px; }
+        .animal-show-name { font-size: 19px; color: var(--verde-floresta); font-weight: bold; margin-bottom: 2px; }
+        .animal-show-especie { font-size: 13px; color: #7f8c8d; font-style: italic; margin-bottom: 8px; }
         .animal-show-id { font-size: 13px; color: #555; font-family: 'Courier New', Courier, monospace; font-weight: bold; background: #e0dbcd; padding: 3px 10px; border-radius: 4px; display: inline-block; }
 
-        /* --- TELA INTEIRA DA FICHA TÉCNICA (PÁGINA COMPLETA) --- */
+        /* --- TELA INTEIRA DA FICHA TÉCNICA --- */
         .ficha-fullscreen-page {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -93,33 +100,14 @@
         }
         .ficha-fullscreen-page.active { opacity: 1; pointer-events: auto; }
 
-        /* Esquerda: Informações e Voltar */
         .ficha-lado-esquerdo {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            background: var(--branco);
-            box-shadow: 5px 0 15px rgba(0,0,0,0.05);
+            flex: 1; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; background: var(--branco); box-shadow: 5px 0 15px rgba(0,0,0,0.05);
         }
         .ficha-page-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 24px;
-            color: var(--verde-floresta);
-            border-bottom: 2px solid var(--areia);
-            padding-bottom: 15px;
-            margin-bottom: 10px;
+            display: flex; align-items: center; gap: 15px; font-size: 24px; color: var(--verde-floresta); border-bottom: 2px solid var(--areia); padding-bottom: 15px; margin-bottom: 10px;
         }
         .btn-voltar {
-            background-color: var(--areia-escura);
-            color: var(--cinza-escuro);
-            border: none; padding: 10px 16px; border-radius: 6px;
-            cursor: pointer; font-weight: bold; font-size: 14px;
-            display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+            background-color: var(--areia-escura); color: var(--cinza-escuro); border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; width: fit-content;
         }
         .btn-voltar:hover { background-color: #cbd3ce; color: var(--verde-floresta); }
 
@@ -127,30 +115,29 @@
         .ficha-dado label { font-size: 11px; font-weight: bold; color: var(--verde-floresta); text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.5px; }
         .ficha-dado span { font-size: 18px; color: var(--cinza-escuro); font-weight: 600; }
 
-        /* Direita: Foto Inteira Ocupando Metade da Tela */
         .ficha-lado-direito { flex: 1; height: 100%; background-color: var(--areia-escura); position: relative; }
         .ficha-lado-direito img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* --- SEÇÕES DE CONTEÚDO E TABELAS DAS ABAS --- */
+        /* --- SEÇÕES DE CONTEÚDO E TABELAS --- */
         .content-section { background-color: var(--branco); padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 30px; }
         .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         
         .btn { background-color: var(--verde-floresta); color: var(--branco); border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
         .btn:hover { background-color: var(--verde-claro); }
+        .btn-secondary { background-color: var(--areia-escura); color: var(--cinza-escuro); }
+        .btn-secondary:hover { background-color: #cbd3ce; }
 
-        /* Tabelas Genéricas */
         .data-table { width: 100%; border-collapse: collapse; margin-top: 15px; text-align: left; }
         .data-table th { background-color: var(--verde-floresta); color: var(--branco); padding: 12px 15px; font-size: 14px; }
         .data-table td { padding: 12px 15px; border-bottom: 1px solid var(--areia-escura); font-size: 14px; color: var(--cinza-escuro); }
         .data-table tr:hover { background-color: var(--areia); }
         
-        /* Badges de Status */
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; }
         .badge-success { background-color: #d4edda; color: #155724; }
         .badge-warning { background-color: #fff3cd; color: #856404; }
         .badge-danger { background-color: #f8d7da; color: #721c24; }
 
-        /* --- MODAIS DE CADASTRO / GALERIA --- */
+        /* --- MODAIS --- */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal { background: var(--branco); padding: 30px; border-radius: 12px; width: 600px; max-width: 95%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-height: 90vh; overflow-y: auto; }
@@ -164,37 +151,52 @@
         .form-row { display: flex; gap: 15px; }
         .form-row .form-group { flex: 1; }
 
-        /* Controle de Abas */
         .page { display: none; }
         .page.active { display: block; }
     </style>
 </head>
 <body>
 
-    <!-- --- TELA DE LOGIN --- -->
     <div class="login-overlay" id="loginScreen">
         <div class="login-box">
             <div class="brand"><i class="fa-solid fa-hippo"></i><span>ZOO-CAMARGO</span></div>
-            <div id="block-login" class="login-form-block active">
+            
+            <div class="login-form-block active" id="blockLogin">
                 <h2>Acesso ao Sistema</h2>
                 <form onsubmit="handleLogin(event)">
                     <div class="form-group" style="text-align: left;">
                         <label for="login-user">Usuário</label>
-                        <input type="text" id="login-user" value="admin">
+                        <input type="text" id="login-user" placeholder="Digite seu usuário" required>
                     </div>
                     <div class="form-group" style="text-align: left;">
                         <label for="login-pass">Senha</label>
-                        <input type="password" id="login-pass" value="123456">
+                        <input type="password" id="login-pass" placeholder="Digite sua senha" required>
                     </div>
                     <div class="login-actions">
                         <button type="submit" class="btn" style="justify-content: center; padding: 12px; width: 100%;"><i class="fa-solid fa-right-to-bracket"></i> Entrar</button>
                     </div>
                 </form>
+                <span class="link-forgot" onclick="toggleLoginBlocks('forgot')">Esqueceu sua senha?</span>
             </div>
+
+            <div class="forgot-form-block" id="blockForgot">
+                <h2>Redefinir Senha</h2>
+                <p style="font-size: 13px; color: #7f8c8d; margin-bottom: 20px;">Insira seu e-mail institucional cadastrado para receber as instruções de recuperação.</p>
+                <form onsubmit="handleResetPassword(event)">
+                    <div class="form-group" style="text-align: left;">
+                        <label for="forgot-email">E-mail Institucional</label>
+                        <input type="email" id="forgot-email" placeholder="nome@zoocamargo.com.br" required>
+                    </div>
+                    <div class="login-actions">
+                        <button type="submit" class="btn" style="justify-content: center; padding: 12px; width: 100%;"><i class="fa-solid fa-paper-plane"></i> Enviar Link de Recuperação</button>
+                        <button type="button" class="btn btn-secondary" onclick="toggleLoginBlocks('login')" style="justify-content: center; padding: 12px; width: 100%;"><i class="fa-solid fa-arrow-left"></i> Voltar ao Login</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 
-    <!-- --- SIDEBAR LATERAL COM TODAS AS ABAS E ÍCONES COERENTES COM ZOOLÓGICO --- -->
     <div class="sidebar">
         <div>
             <div class="brand"><i class="fa-solid fa-hippo"></i><span>ZOO-CAMARGO</span></div>
@@ -216,14 +218,12 @@
         </div>
     </div>
 
-    <!-- --- ÁREA PRINCIPAL --- -->
     <div class="main-content">
         <div class="header">
             <h1 id="main-title">Animais e Grupos Taxonômicos</h1>
-            <p>Segunda-feira, 08 de Junho de 2026</p>
+            <p>Terça-feira, 09 de Junho de 2026</p>
         </div>
 
-        <!-- ABA 1: ANIMAIS E GRUPOS (PRINCIPAL) -->
         <div id="page-animais" class="page active">
             <div class="content-section">
                 <div class="section-header">
@@ -235,40 +235,38 @@
                     <div class="group-card" onclick="openGroupModal('Mamíferos')">
                         <i class="fa-solid fa-otter"></i>
                         <h3>Mamíferos</h3>
-                        <p id="count-Mamíferos">10 catalogados</p>
+                        <p id="count-Mamíferos">0 catalogados</p>
                     </div>
                     <div class="group-card" onclick="openGroupModal('Aves')">
                         <i class="fa-solid fa-crow"></i>
                         <h3>Aves</h3>
-                        <p id="count-Aves">5 catalogados</p>
+                        <p id="count-Aves">0 catalogados</p>
                     </div>
                     <div class="group-card" onclick="openGroupModal('Répteis')">
                         <i class="fa-solid fa-dragon"></i>
                         <h3>Répteis</h3>
-                        <p id="count-Répteis">5 catalogados</p>
+                        <p id="count-Répteis">0 catalogados</p>
                     </div>
                     <div class="group-card" onclick="openGroupModal('Anfíbios')">
                         <i class="fa-solid fa-frog"></i>
                         <h3>Anfíbios</h3>
-                        <p id="count-Anfíbios">3 catalogados</p>
+                        <p id="count-Anfíbios">0 catalogados</p>
                     </div>
                     <div class="group-card" onclick="openGroupModal('Peixes')">
                         <i class="fa-solid fa-fish"></i>
                         <h3>Peixes</h3>
-                        <p id="count-Peixes">3 catalogados</p>
+                        <p id="count-Peixes">0 catalogados</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ABA 2: REGISTRO DE TRATO DIÁRIO -->
         <div id="page-trato" class="page">
             <div class="content-section">
                 <div class="section-header">
                     <h2>📝 Prontuário de Trato e Rotinas Realizadas</h2>
                     <button class="btn" onclick="alert('Novo registro de trato diário acionado.')"><i class="fa-solid fa-pen-to-square"></i> Registrar Novo Trato</button>
                 </div>
-                <p style="font-size: 14px; margin-bottom: 15px; color: #555;">Controle de alimentação fornecida, limpeza e enriquecimento para fins de auditoria biológica.</p>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -280,21 +278,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Savana 01 (Simba)</td><td>Alimentação Carnívora + Suplementos</td><td>08:30</td><td>Marcos Silva</td><td><span class="badge badge-success">Concluído</span></td></tr>
-                        <tr><td>Ilha dos Macacos (Chico)</td><td>Enriquecimento Ambiental com Frutos Ocultos</td><td>10:15</td><td>Juliana Costa</td><td><span class="badge badge-success">Concluído</span></td></tr>
-                        <tr><td>Serpentário (Kaa)</td><td>Inspeção Física Semanal + Limpeza de Substrato</td><td>11:00</td><td>Marcos Silva</td><td><span class="badge badge-success">Concluído</span></td></tr>
-                        <tr><td>Tanque Pinguins (Pingo)</td><td>Alimentação com Pescado Congelado/Descongelado</td><td>14:00</td><td>Lucas Souza</td><td><span class="badge badge-warning">Pendente</span></td></tr>
+                        <tr><td>Recinto 1 (Tank)</td><td>Alimentação Herbívora</td><td>08:30</td><td>Marcos Silva</td><td><span class="badge badge-success">Concluído</span></td></tr>
+                        <tr><td>Recinto 6 (Ziggy)</td><td>Enriquecimento Ambiental</td><td>10:15</td><td>Juliana Costa</td><td><span class="badge badge-success">Concluído</span></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- ABA 3: DIETAS -->
         <div id="page-dietas" class="page">
             <div class="content-section">
                 <div class="section-header">
                     <h2>🥩 Cronograma e Prescrição Nutricional</h2>
-                    <button class="btn" onclick="alert('Funcionalidade de agendamento nutricional integrada.')"><i class="fa-solid fa-calendar-plus"></i> Prescrever Dieta</button>
+                    <button class="btn" onclick="alert('Funcionalidade integrada.')"><i class="fa-solid fa-calendar-plus"></i> Prescrever Dieta</button>
                 </div>
                 <table class="data-table">
                     <thead>
@@ -306,96 +301,71 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Grandes Felinos</td><td>Carne Vermelha / Suplementação Cálcio</td><td>1x ao dia (Final da tarde)</td><td><span class="badge badge-success">Abundante</span></td></tr>
-                        <tr><td>Aves Tropicais</td><td>Mix de Frutas de Época e Sementes</td><td>3x ao dia</td><td><span class="badge badge-success">Abundante</span></td></tr>
-                        <tr><td>Répteis (Serpentes)</td><td>Roedores de biotério certificados</td><td>Quinzenal</td><td><span class="badge badge-warning">Estratégico</span></td></tr>
-                        <tr><td>Primatas</td><td>Frutos, Folhas e Insetos vivos</td><td>2x ao dia</td><td><span class="badge badge-success">Abundante</span></td></tr>
+                        <tr><td>Grandes Carnívoros</td><td>Carne Vermelha / Cálcio</td><td>1x ao dia</td><td><span class="badge badge-success">Abundante</span></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- ABA 4: VETERINÁRIA -->
         <div id="page-veterinaria" class="page">
             <div class="content-section">
                 <div class="section-header">
                     <h2>🩺 Atendimento Clínico e Triagem Ambulatorial</h2>
-                    <button class="btn" onclick="alert('Abrindo formulário de evolução de prontuário.')"><i class="fa-solid fa-notes-medical"></i> Registrar Evolução</button>
+                    <button class="btn" onclick="alert('Abrindo formulário.')"><i class="fa-solid fa-notes-medical"></i> Registrar Evolução</button>
                 </div>
                 <table class="data-table">
                     <thead>
                         <tr>
                             <th>Paciente (ID)</th>
-                            <th>Intercorrência / Observação</th>
-                            <th>Tratamento Prescrito</th>
+                            <th>Intercorrência</th>
+                            <th>Tratamento</th>
                             <th>Status Clínico</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Lobo-Guará (#100009)</td><td>Tratamento periodontal e preventivo</td><td>Antibioticoterapia via oral na carne</td><td><span class="badge badge-danger">Tratamento Clínico</span></td></tr>
-                        <tr><td>Tigre de Bengala (#100003)</td><td>Acompanhamento de claudicação leve posterior</td><td>Repouso assistido e anti-inflamatório</td><td><span class="badge badge-warning">Em Observação</span></td></tr>
-                        <tr><td>Águia Real (#200005)</td><td>Avaliação de penas após muda sazonal</td><td>Suplementação vitamínica na água</td><td><span class="badge badge-warning">Em Observação</span></td></tr>
+                        <tr><td>Diabo-da-Tasmânia (#100014)</td><td>Desgaste dental leve</td><td>Suplementação vitamínica</td><td><span class="badge badge-warning">Em Observação</span></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- ABA 5: CONTROLE DE RECINTOS -->
         <div id="page-recintos" class="page">
             <div class="content-section">
                 <div class="section-header">
-                    <h2>🏞️ Monitoramento Espacial de Segurança e Habitabilidade</h2>
-                    <button class="btn" onclick="alert('Solicitação enviada ao setor de infraestrutura física.')"><i class="fa-solid fa-hammer"></i> Nova Obras/Manutenção</button>
+                    <h2>🏞️ Monitoramento Espacial de Segurança</h2>
+                    <button class="btn" onclick="alert('Solicitação enviada.')"><i class="fa-solid fa-hammer"></i> Nova Manutenção</button>
                 </div>
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>Identificação do Recinto</th>
-                            <th>Bioma Correspondente</th>
-                            <th>Condição de Barreira / Telas</th>
-                            <th>Nível de Parâmetros (Umidade/Temp)</th>
+                            <th>Recinto</th>
+                            <th>Bioma</th>
+                            <th>Barreira</th>
+                            <th>Parâmetros</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Savana Africana 01</td><td>Cerrado / Savana Aberta</td><td><span class="badge badge-success">Seguro / Revisado</span></td><td>Automático (Excelente)</td></tr>
-                        <tr><td>Serpentário Aquecido</td><td>Floresta Tropical Úmida</td><td><span class="badge badge-success">Seguro / Revisado</span></td><td><span class="badge badge-danger">Alerta Termostato</span></td></tr>
-                        <tr><td>Lago Central Jacarés</td><td>Área Alagada / Pantanal</td><td><span class="badge badge-success">Seguro / Revisado</span></td><td>Manual (Estável)</td></tr>
-                        <tr><td>Aquário Oceânico Principal</td><td>Marinho Recifal</td><td><span class="badge badge-success">Seguro / Revisado</span></td><td>Filtros UV (Excelente)</td></tr>
+                        <tr><td>Recinto 1 - Savana Aberta</td><td>Savana Aberta</td><td><span class="badge badge-success">Seguro</span></td><td>Excelente</td></tr>
+                        <tr><td>Recinto 2 - Vale Glacial</td><td>Tundra/Climatizado</td><td><span class="badge badge-success">Seguro</span></td><td>Excelente</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- ABA 6: RELATÓRIOS -->
         <div id="page-relatorios" class="page">
             <div class="content-section">
                 <h2>📊 Consolidado Estatístico de População e Saúde</h2>
-                <p style="margin-top:10px; color:#555;">Dados gerados em tempo real com base no censo interno do parque zoológico:</p>
-                <div class="groups-grid" style="margin-top:20px;">
+                <div class="groups-grid">
                     <div class="group-card" style="cursor:default; border:none;">
                         <i class="fa-solid fa-shield-halved" style="color:var(--verde-claro);"></i>
                         <h3>População Total</h3>
-                        <h2 style="font-size:32px; margin-top:10px; color:var(--verde-floresta);">26</h2>
-                        <p>Animais Ativos</p>
-                    </div>
-                    <div class="group-card" style="cursor:default; border:none;">
-                        <i class="fa-solid fa-heart-pulse" style="color:#2e7d32;"></i>
-                        <h3>Índice de Saúde</h3>
-                        <h2 style="font-size:32px; margin-top:10px; color:#2e7d32;">88.4%</h2>
-                        <p>Quadros Estáveis</p>
-                    </div>
-                    <div class="group-card" style="cursor:default; border:none;">
-                        <i class="fa-solid fa-kit-medical" style="color:var(--terracota);"></i>
-                        <h3>Em Isolamento</h3>
-                        <h2 style="font-size:32px; margin-top:10px; color:var(--terracota);">3</h2>
-                        <p>Sob Cuidados Médicos</p>
+                        <h2 style="font-size:32px; margin-top:10px; color:var(--verde-floresta);" id="total-pop-count">0</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- === MODAL: LISTAGEM DA GALERIA CRUZA COM O EVENTO DE CLIQUE === -->
     <div class="modal-overlay" id="modalVerGrupo">
         <div class="modal modal-large">
             <div class="modal-title">
@@ -407,53 +377,27 @@
         </div>
     </div>
 
-    <!-- === PÁGINA INTEIRA: FICHA TÉCNICA DO ANIMAL (INFO ESQUERDA / FOTO DIREITA) === -->
     <div class="ficha-fullscreen-page" id="pageFichaAnimal">
-        
-        <!-- Metade Esquerda: Conteúdos e Informações Médicas -->
         <div class="ficha-lado-esquerdo">
             <button class="btn-voltar" onclick="fecharFichaPaginaInteira()">
                 <i class="fa-solid fa-arrow-left"></i> Voltar para a Galeria
             </button>
-            
             <div class="ficha-page-title">
                 <i class="fa-solid fa-file-prescription"></i>
                 <span>Ficha Técnica do Residente</span>
             </div>
-
-            <div class="ficha-dado">
-                <label>Nome Completo / Registro</label>
-                <span id="ficha-nome">-</span>
-            </div>
-            <div class="ficha-dado">
-                <label>Espécie / Nome Científico</label>
-                <span id="ficha-especie">-</span>
-            </div>
-            <div class="ficha-dado">
-                <label>Código do Animal (ID)</label>
-                <span id="ficha-id" style="font-family: monospace; font-weight: bold; color: var(--terracota);">-</span>
-            </div>
-            <div class="ficha-dado">
-                <label>Classe / Grupo Taxonômico</label>
-                <span id="ficha-grupo">-</span>
-            </div>
-            <div class="ficha-dado">
-                <label>Localização / Recinto Definido</label>
-                <span id="ficha-recinto">-</span>
-            </div>
-            <div class="ficha-dado">
-                <label>Quadro Clínico e Saúde Geral</label>
-                <span id="ficha-saude" style="color: #2e7d32; font-weight: bold;">-</span>
-            </div>
+            <div class="ficha-dado"><label>Nome Completo</label><span id="ficha-nome">-</span></div>
+            <div class="ficha-dado"><label>Espécie / Nome Científico</label><span id="ficha-especie">-</span></div>
+            <div class="ficha-dado"><label>Código do Animal (ID)</label><span id="ficha-id" style="color: var(--terracota);">-</span></div>
+            <div class="ficha-dado"><label>Classe / Grupo Taxonômico</label><span id="ficha-grupo">-</span></div>
+            <div class="ficha-dado"><label>Localização / Recinto</label><span id="ficha-recinto">-</span></div>
+            <div class="ficha-dado"><label>Quadro Clínico</label><span id="ficha-saude" style="color: #2e7d32; font-weight: bold;">-</span></div>
         </div>
-
-        <!-- Metade Direita: Foto Gigante de Tela Cheia -->
         <div class="ficha-lado-direito">
             <img id="ficha-foto" src="" alt="Imagem Ampliada">
         </div>
     </div>
 
-    <!-- === MODAL DE CADASTRO === -->
     <div class="modal-overlay" id="modalAnimal">
         <div class="modal">
             <div class="modal-title"><span>Cadastrar Novo Animal</span><i class="fa-solid fa-xmark modal-close" onclick="closeModal('modalAnimal')"></i></div>
@@ -468,22 +412,22 @@
                     </select>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label>Nome do Animal</label><input type="text" id="ani-nome" placeholder="Ex: Mel" required></div>
-                    <div class="form-group"><label>Espécie / Raça</label><input type="text" id="ani-especie" placeholder="Ex: Onça" required></div>
+                    <div class="form-group"><label>Nome do Animal</label><input type="text" id="ani-nome" required></div>
+                    <div class="form-group"><label>Espécie / Raça</label><input type="text" id="ani-especie" required></div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label>Recinto / Localização</label><input type="text" id="ani-recinto-input" placeholder="Ex: Recinto 4" value="Setor Geral de Preservação"></div>
+                    <div class="form-group"><label>Recinto</label><input type="text" id="ani-recinto-input" value="Setor Geral"></div>
                     <div class="form-group"><label>Estado de Saúde</label>
                         <select id="ani-saude-input">
-                            <option value="Excellent / Estável">Excelente / Estável</option>
+                            <option value="Excelente / Estável">Excelente / Estável</option>
                             <option value="Em Observação">Em Observação</option>
                             <option value="Tratamento Clínico">Tratamento Clínico</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Link (URL) da Foto do Animal (Opcional)</label>
-                    <input type="url" id="ani-foto" placeholder="Cole aqui ou deixe em branco para imagem automática">
+                    <label>Link ou Nome da Imagem (Ex: meu-leao.jpg)</label>
+                    <input type="text" id="ani-foto" placeholder="Cole a URL ou o nome do arquivo local">
                 </div>
                 <button type="submit" class="btn" style="width: 100%; justify-content: center;"><i class="fa-solid fa-floppy-disk"></i> Salvar Animal</button>
             </form>
@@ -491,171 +435,271 @@
     </div>
 
     <script>
-        // Banco de dados em memória inicializado
         const bancoAnimais = {
             "Mamíferos": [
-                { id: "100001", nome: "Simba", especie: "Leão Africano", recinto: "Savana Africana 01", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1614027164847-1b2809eb7b9b?w=800&auto=format&fit=crop&q=80" },
-                { id: "100002", nome: "Melman", especie: "Girafa", recinto: "Savana Africana 02", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1547721064-da6cfb341d50?w=800&auto=format&fit=crop&q=80" },
-                { id: "100003", nome: "Thor", especie: "Tigre de Bengala", recinto: "Felinos Setor Norte", saude: "Em Observação", foto: "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?w=800&auto=format&fit=crop&q=80" },
-                { id: "100004", nome: "Baloo", especie: "Urso Pardo", recinto: "Bosque Temperado", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=800&auto=format&fit=crop&q=80" },
-                { id: "100005", nome: "Dumbo", especie: "Elefante Asiático", recinto: "Santuário dos Gigantes", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=800&auto=format&fit=crop&q=80" },
-                { id: "100006", nome: "Chico", especie: "Macaco-Prego", recinto: "Primatas Ilha 2", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=800&auto=format&fit=crop&q=80" },
-                { id: "100007", nome: "Diego", especie: "Guepardo", recinto: "Felinos Setor Sul", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=800&auto=format&fit=crop&q=80" },
-                { id: "100008", nome: "Pipoca", especie: "Suricata", recinto: "Tocas Desérticas", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1518709768871-a370c46bbe84?w=800&auto=format&fit=crop&q=80" },
-                { id: "100009", nome: "Pampa", especie: "Lobo-Guará", recinto: "Cerrado Brasileiro", saude: "Tratamento Clínico", foto: "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?w=800&auto=format&fit=crop&q=80" },
-                { id: "100010", nome: "Flora", especie: "Zebra", recinto: "Savana Africana 01", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1501705388883-4ed8a543392c?w=800&auto=format&fit=crop&q=80" }
+                { id: "100000", nome: "Simba", especie: "Leão-Africano (Panthera leo)", recinto: "Recinto 3 - Garras e Predadores", saude: "Excelente / Estável", photo: "https://ogimg.infoglobo.com.br/in/14386753-969-934/FT1086A/2014-763633257-20141027142902429afp.jpg_20141027.jpg" },
+                { id: "100001", nome: "Yuki", especie: "Leopardo-das-Neves (Panthera uncia)", recinto: "Recinto 1 - Savana Aberta", saude: "Excelente / Estável", photo: "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2021/08/47964_655E75DA06DFA11C-1.jpg?w=1200&h=900&crop=0" },
+                { id: "100002", nome: "Tank", especie: "Rinoceronte-Branco (Ceratotherium simum)", recinto: "Recinto 1 - Savana Aberta", saude: "Excelente / Estável", photo: "https://i0.wp.com/segredosdomundo.r7.com/wp-content/uploads/2021/03/rinoceronte-branco-especie-quase-extinta-pode-ser-salva-pela-ciencia-1.jpg?w=905&quality=89&ssl=1" },
+                { id: "100003", nome: "Blizzard", especie: "Urso-Polar (Ursus maritimus)", recinto: "Recinto 2 - Vale Glacial", saude: "Excelente / Estável", photo: "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1920/https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_225/https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_768/https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_1580/https://diretodonossojardim.com.br/wp-content/uploads/2019/06/2019-06-22-11.07.19-e1561401089432.jpg" },
+                { id: "100004", nome: "Rictus", especie: "Hiena-Malhada (Crocuta crocuta)", recinto: "Recinto 3 - Garras e Predadores", saude: "Excelente / Estável", photo: "https://s3.animalia.bio/animals/photos/full/1.25x1/crocuta-crocuta-ngorongoro-crater-2015jpg-1.webp?id=6f33ac6d719e2844cad41b9f653ebdbc" },
+                { id: "100005", nome: "Paco", especie: "Lince-Ibérico (Lynx pardinus)", recinto: "Recinto 3 - Garras e Predadores", saude: "Em Observação", photo: "https://iucn.org/sites/default/files/styles/article_image/public/2024-06/iberian-lynx_copyright-code83_inaturalist_cc-by-nc_medium.jpeg?itok=grSXnVCG" },
+                { id: "100006", nome: "Tupã", especie: "Tamanduá-Bandeira (Myrmecophaga tridactyla)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Myresluger2.jpg/330px-Myresluger2.jpg" },
+                { id: "100007", nome: "Amado", especie: "Anta-Brasileira (Tapirus terrestris)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "https://i0.wp.com/segredosdomundo.r7.com/wp-content/uploads/2020/08/anta-caracteristicas-habitos-e-curiosidades-sobre-o-animal-e1672334036938.jpg?w=1000&quality=89&ssl=1" },
+                { id: "100008", nome: "Rio", especie: "Ariranha (Pteronura brasiliensis)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "https://static.escolakids.uol.com.br/2019/07/2-ariranha.jpg" },
+                { id: "100009", nome: "Manati", especie: "Peixe-Boi-da-Amazônia (Trichechus inunguis)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "https://www.infoescola.com/wp-content/uploads/2010/05/peixe-boi_692485741-1000x644.jpg" },
+                { id: "100010", nome: "Ziggy", especie: "Macaco-Aranha (Ateles paniscus)", recinto: "Recinto 6 - Santuário dos Primatas", saude: "Excelente / Estável", photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Ateles_fusciceps_Colombia.JPG/960px-Ateles_fusciceps_Colombia.JPG" },
+                { id: "100011", nome: "Atlas", especie: "Gorila-da-Montanha (Gorilla beringei)", recinto: "Recinto 6 - Santuário dos Primatas", saude: "Excelente / Estável", photo: "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2021/06/6849_67069BDFFD47E938.jpg?w=1200&h=900&crop=0" },
+                { id: "100012", nome: "Rufu", especie: "Panda-Vermelho (Ailurus fulgens)", recinto: "Recinto 7 - Bosque Asiático", saude: "Excelente / Estável", photo: "https://portaledicase.com/wp-content/uploads/2025/06/curiosidades-sobre-pandas-vermelhos.jpg" },
+                { id: "100013", nome: "Pixel", especie: "Lêmure-de-Cauda-Anelada (Lemur catta)", recinto: "Recinto 8 - Ilha de Madagascar", saude: "Excelente / Estável", photo: "https://img.magnific.com/fotos-gratis/foto-vertical-de-um-lemure-de-cauda-anelada-atras-de-um-verde_181624-29061.jpg" },
+                { id: "100014", nome: "Taz", especie: "Diabo-da-Tasmânia (Sarcophilus harrisii)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Em Observação", photo: "https://s2.glbimg.com/RfuhWEVn-imX9sG2eMQuj48udYM=/e.glbimg.com/og/ed/f/original/2020/08/08/david-clode-xmnqnynd9ju-unsplash.jpg" },
+                { id: "100015", nome: "Soneca", especie: "Preguiça-de-Três-Dedos (Bradypus tridactylus)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://www.mundoecologia.com.br/wp-content/uploads/2021/03/Preguic%CC%A7a-de-Tre%CC%82s-Dedos.jpeg" },
+                { id: "100016", nome: "Enigma", especie: "Okapi (Okapia johnstoni)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://www.cmzoo.org/wp-content/uploads/okapi-rightside.jpg" },
+                { id: "100017", nome: "Shadow", especie: "Raposa-Voadora (Pteropus vampyrus)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2026/01/raposa-voadora-virus-nipah.jpg?w=1200&h=1200&crop=1" },
+                { id: "100018", nome: "Odie", especie: "Lontra-Marinha (Enhydra lutris)", recinto: "Recinto 10 - Pavilhão Australiano", saude: "Excelente / Estável", photo: "https://static.wixstatic.com/media/c4e423_8f1d6207d8dc429e8fad04e40fcecb11~mv2.png/v1/fill/w_568,h_414,al_c,lg_1,q_85,enc_avif,quality_auto/c4e423_8f1d6207d8dc429e8fad04e40fcecb11~mv2.png" },
+                { id: "100019", nome: "Darwin", especie: "Ornitorrinco (Ornithorhynchus anatinus)", recinto: "Recinto 10 - Pavilhão Australiano", saude: "Em Observação", photo: "https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/01-platypus-decline-20180430_3dg1547.jpg?w=1600" }
             ],
+
             "Aves": [
-                { id: "200001", nome: "Pingo", especie: "Pinguim de Magalhães", recinto: "Tanque Subaquático Frio", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1518176258434-90cb392bc9a6?w=800&auto=format&fit=crop&q=80" },
-                { id: "200002", nome: "Arara", especie: "Arara-Canindé", recinto: "Viveiro de Voo Livre", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=800&auto=format&fit=crop&q=80" },
-                { id: "200003", nome: "Zazu", especie: "Tucano-Toco", recinto: "Mata Atlântica Sul", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=800&auto=format&fit=crop&q=80" },
-                { id: "200004", nome: "Hedwig", especie: "Coruja das Neves", recinto: "Predadores Noturnos", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&auto=format&fit=crop&q=80" },
-                { id: "200005", nome: "Apolo", especie: "Águia Real", recinto: "Grandes Predadores Aéreos", saude: "Em Observação", foto: "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=800&auto=format&fit=crop&q=80" }
+            { id: "200001", nome: "Pingo", especie: "Pinguim-de-Magalhães (Spheniscus magellanicus)", recinto: "Recinto 10 - Pavilhão Australiano e Costa", saude: "Excelente / Estável", photo: "https://static.wixstatic.com/media/c4e423_2e1574fb8ae24d7a8a3bcfb49b6e0e7e~mv2.png/v1/fill/w_550,h_400,al_c,q_85,enc_avif,quality_auto/c4e423_2e1574fb8ae24d7a8a3bcfb49b6e0e7e~mv2.png" },
+                { id: "200002", nome: "Arara", especie: "Arara-Canindé (Ara ararauna)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "https://www.criadouroiguacuano.com.br/portal/wp-content/uploads/2020/02/arara-caninde-1.jpg" },
+                { id: "200003", nome: "Zeus", especie: "Águia-Harpia (Harpia harpyja)", recinto: "Recinto 3 - Garras e Predadores", saude: "Excelente / Estável", photo: "https://animalbusiness.com.br/wp-content/uploads/2020/04/Harpia-Thumb.jpg" },
+                { id: "200004", nome: "Apolo", especie: "Falcão-Peregrino (Falco peregrinus)", recinto: "Recinto 3 - Garras e Predadores", saude: "Excelente / Estável", photo: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/303618951/900" },
+                { id: "200005", nome: "Sol", especie: "Flamingo-Chileno (Phoenicopterus chilensis)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "https://media.istockphoto.com/id/1476241678/pt/foto/chilean-flamingo-jersey-u-k.jpg?s=612x612&w=0&k=20&c=5ta0zH8zdZgigRROcjt6Mon7QP6PtZG232dVtZoh5mo=" },
+                { id: "200006", nome: "Tuca", especie: "Tucano-Toco (Ramphastos toco)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "https://static.wixstatic.com/media/3d5dc1_44a2db0cef0e451a832a28111e018bba.jpg/v1/fill/w_480,h_480,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3d5dc1_44a2db0cef0e451a832a28111e018bba.jpg" },
+                { id: "200007", nome: "Noctis", especie: "Coruja-Buraqueira (Athene cunicularia)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "https://www.iguiecologia.com/wp-content/uploads/2021/02/Coruja-buraqueira7-2.jpg" },
+                { id: "200008", nome: "Ícaro", especie: "Condor-dos-Andes (Vultur gryphus)", recinto: "Recinto 1 - Savana Aberta", saude: "Em Observação", photo: "https://pick-upau.org.br/ong/noticias/noticias_2019/2019.02.19_ong-materia-condor-dos-andes/Condor-Raptor-South-America-Andean-Condor-Bill-2198681-materia.jpg" },
+                { id: "200009", nome: "Kiwi", especie: "Kiwi-Marrom (Apteryx mantelli)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/TeTuatahianui.jpg/330px-TeTuatahianui.jpg" },
+                { id: "200010", nome: "Dante", especie: "Casuar-do-Sul (Casuarius casuarius)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://conteudo.imguol.com.br/c/entretenimento/2f/2016/12/05/ave-casuar-tipica-da-australia-1480963348286_v2_1x1.jpg" },
+                { id: "200011", nome: "Malik", especie: "Avestruz (Struthio camelus)", recinto: "Recinto 1 - Savana Aberta", saude: "Excelente / Estável", photo: "https://i0.wp.com/blog.bioparquedorio.com.br/wp-content/uploads/2025/02/Savana-Avestruz.png?fit=338%2C253&ssl=1" },
+                { id: "200012", nome: "Argos", especie: "Pavão-Indiano (Pavo cristatus)", recinto: "Recinto 20 - Jardim dos Pavões", saude: "Excelente / Estável", photo: "https://www.mundoecologia.com.br/wp-content/uploads/2018/11/Pav%C3%A3o-Indiano-1.jpg" },
+                { id: "200013", nome: "Guga", especie: "Pelicano-Comum (Pelecanus onocrotalus)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Pelecanus_conspicillatus_01.jpg" },
+                { id: "200014", nome: "Odete", especie: "Cisne-Negro (Cygnus atratus)", recinto: "Recinto 19 - Lago Ornamental", saude: "Excelente / Estável", photo: "https://s2.glbimg.com/3qemrJW7WsSAGL6RCHcSFuZOwUI=/e.glbimg.com/og/ed/f/original/2020/07/30/qurratul-ayin-sadia-5hop-cnzpge-unsplash.jpg" },
+                { id: "200015", nome: "Kaká", especie: "Cacatua-de-Crista-Enxofrada (Cacatua galerita)", recinto: "Recinto 21 - Viveiro Australasia", saude: "Excelente / Estável", photo: "https://thumbs.dreamstime.com/b/papagaio-de-cacatua-enxofre-com-crista-que-olha-o-37783653.jpg" },
+                { id: "200016", nome: "Chico", especie: "Papagaio-Verdadeiro (Amazona aestiva)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "https://s1.static.brasilescola.uol.com.br/be/e/Amazona_aestiva_-pet-6.jpg" },
+                { id: "200017", nome: "Pipo", especie: "Pica-Pau-de-Banda-Branca (Dryocopus lineatus)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/234655651/900" },
+                { id: "200018", nome: "Mel", especie: "Calopsita (Nymphicus hollandicus)", recinto: "Recinto 21 - Viveiro Australasia", saude: "Excelente / Estável", photo: "https://avesornamentaisjej.cdn.magazord.com.br/img/2024/03/produto/799/153-calopsita-lutina.png?ims=600x600" },
+                { id: "200019", nome: "Fantasma", especie: "Urutau/Mãe-da-lua (Nyctibius griseus)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "https://upload.wikimedia.org/wikipedia/commons/f/fb/M%C3%A3e-da-lua-gigante_%28Nyctibius_grandis%29.jpg" },
+                { id: "200020", nome: "Pluma", especie: "Ema (Rhea americana)", recinto: "Recinto 1 - Savana Aberta", saude: "Em Observação", photo: "https://s3.amazonaws.com/media.wikiaves.com.br/images/8002/2008255_3d89225e3d49a3d0283b1dec851fe204.jpg" }
             ],
+
             "Répteis": [
-                { id: "300001", nome: "Kaa", especie: "Píton Reticulada", recinto: "Serpentário Aquecido", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1531804226530-70f8ffb503ce?w=800&auto=format&fit=crop&q=80" },
-                { id: "300002", nome: "Croco", especie: "Jacaré-do-Papo-Amarelo", recinto: "Lago Artificial Central", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1606214174585-fe31582d6ee8?w=800&auto=format&fit=crop&q=80" },
-                { id: "300003", nome: "Godzilla", especie: "Iguana Verde", recinto: "Terrário Tropical 5", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=800&auto=format&fit=crop&q=80" },
-                { id: "300004", nome: "Casca", especie: "Tartaruga Gigante de Galápagos", recinto: "Praça dos Quelônios", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=800&auto=format&fit=crop&q=80" },
-                { id: "300005", nome: "Rango", especie: "Camaleão", recinto: "Terrário Tropical 2", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1563460716884-18a517cd222f?w=800&auto=format&fit=crop&q=80" }
+                { id: "300001", nome: "Typhon", especie: "Jacaré-Açu (Melanosuchus niger)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "https://ferdinandodesousa.com/wp-content/uploads/2019/07/jacarc3a9-ac3a7c3ba.jpg" },
+                { id: "300002", nome: "Nagini", especie: "Sucuri-Verde (Eunectes murinus)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://www.zoo.df.gov.br/documents/26926051/26962477/Sucuri-verde.png" },
+                { id: "300003", nome: "Rhaegal", especie: "Dragão-de-Komodo (Varanus komodoensis)", recinto: "Recinto 11 - Ilhas Vulcânicas", saude: "Excelente / Estável", photo: "https://s3.static.brasilescola.uol.com.br/be/2022/03/dragao-komodo.jpg" },
+                { id: "300004", nome: "Cleopatra", especie: "Naja-egípcia (Naja haje)", recinto: "Recinto 12 - Serpentário Central", saude: "Excelente / Estável", photo: "https://predadora.com.br/media/posts/79/WhatsApp-Image-2025-01-14-at-13.18.28-2-2.jpeg" },
+                { id: "300005", nome: "Tortuga", especie: "Tartaruga-Galápagos (Chelonoidis niger)", recinto: "Recinto 13 - Vale dos Quelônios", saude: "Excelente / Estável", photo: "https://super.abril.com.br/wp-content/uploads/2020/01/epa_galapagos-national-park-reproducao_tartaruga_transante_fb.jpg?crop=1&resize=1212,909" },
+                { id: "300006", nome: "Kaa", especie: "Píton-Reticulada (Malayopython reticulatus)", recinto: "Recinto 12 - Serpentário Central", saude: "Excelente / Estável", photo: "https://media.istockphoto.com/id/487506120/pt/foto/pit%C3%A3o-reticulado.jpg?s=612x612&w=0&k=20&c=nI24_e0Wwosu0-3wZsEKQIk5ETuojz2VbXbmxP_Ti-U=" },
+                { id: "300007", nome: "Gator", especie: "Aligátor-Americano (Alligator mississippiensis)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "https://s3.animalia.bio/animals/photos/full/original/1643px-alligator-floridajpg.webp" },
+                { id: "300008", nome: "Chroma", especie: "Camaleão-Pantera (Furcifer pardalis)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIxmfZFLgnxlyAitEaFib3j7ZLaNXag0yQl-9i5PW-m6n6IxdB2wSjD6VIhtygAEGCf8T4DpNAN58ZkRlalNshgL3etno0PV01j2cWdaJ9tBUXMgOmH95PGVZvF3aUHFSjpn-XebJlX3c/w1200-h630-p-k-no-nu/Furcifer+pardalis,+male,+49km+N+of+Ambanja,+SM.jpg" },
+                { id: "300009", nome: "Viper", especie: "Víbora-de-Pestaña (Bothriechis schlegelii)", recinto: "Recinto 12 - Serpentário Central", saude: "Em Observação", photo: "https://conexaoplaneta.com.br/wp-content/uploads/2024/02/cobras-de-pestana-khamai-foundation-lucas-bustamante-conexao-planeta.jpg" },
+                { id: "300010", nome: "Leather", especie: "Tartaruga-de-Couro (Dermochelys coriacea)", recinto: "Recinto 10 - Pavilhão Australiano e Costa", saude: "Excelente / Estável", photo: "https://marsemfim.com.br/wp-content/uploads/2021/02/a-tartaruga-de-couro-copia.jpg.webp" },
+                { id: "300011", nome: "Spike", especie: "Iguana-Verde (Iguana iguana)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Kini_iguana.jpg/330px-Kini_iguana.jpg" },
+                { id: "300012", nome: "Basil", especie: "Basilisco-Verde (Basiliscus plumifrons)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Plumedbasiliskcele4_edit.jpg" },
+                { id: "300013", nome: "Gila", especie: "Monstro-de-Gila (Heloderma suspectum)", recinto: "Recinto 14 - Deserto Estéril", saude: "Excelente / Estável", photo: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Gila.monster.arp.jpg" },
+                { id: "300014", nome: "Thorny", especie: "Diabo-Espinhoso (Moloch horridus)", recinto: "Recinto 14 - Deserto Estéril", saude: "Excelente / Estável", photo: "https://cms-imgp.jw-cdn.org/img/p/102015365/univ/art/102015365_univ_lsr_lg.jpg" },
+                { id: "300015", nome: "Rex", especie: "Jacaretinga (Caiman crocodilus)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "https://s3.animalia.bio/animals/photos/full/original/spectacled-caiman-caiman-crocodilus-2014-11-15-1.webp" },
+                { id: "300016", nome: "Slayer", especie: "Crocodilo-Nilo (Crocodylus niloticus)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "https://s2.glbimg.com/olldc9QvJxqShLGoWjDWJyFrDbw=/e.glbimg.com/og/ed/f/original/2017/11/30/6-mad_1917-crop.jpg" },
+                { id: "300017", nome: "Anubis", especie: "Cobra-Coral (Micrurus lemniscatus)", recinto: "Recinto 12 - Serpentário Central", saude: "Excelente / Estável", photo: "https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/cobra-coral.jpg?w=1900&h=1267" },
+                { id: "300018", nome: "Rango", especie: "Lagarto-Armadilho (Ouroborus cataphractus)", recinto: "Recinto 14 - Deserto Estéril", saude: "Excelente / Estável", photo: "https://preview.redd.it/the-armadillo-lizard-a-real-life-baby-dragon-not-my-photo-v0-mymhr355zcy61.png?width=640&crop=smart&auto=webp&s=ce3362fb26c3afc86fb8534faeac804de87a80e0" },
+                { id: "300019", nome: "Medusa", especie: "Cascavel (Crotalus durissus)", recinto: "Recinto 12 - Serpentário Central", saude: "Excelente / Estável", photo: "https://cobras.blog.br/wp-content/uploads/2018/03/cobra-cascavel07.jpg" },
+                { id: "300020", nome: "Gecko", especie: "Lagartixa-Leopardo (Eublepharis macularius)", recinto: "Recinto 14 - Deserto Estéril", saude: "Excelente / Estável", photo: "https://caesegatos.com.br/wp-content/uploads/2021/06/reptil.png" }
             ],
+
             "Anfíbios": [
-                { id: "400001", nome: "Kermit", especie: "Sapo Verde Europeu", recinto: "Brejo Controlado", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1581481615985-ba4775734a9b?w=800&auto=format&fit=crop&q=80" },
-                { id: "400002", nome: "Dart", especie: "Rã Venenosa de Flecha", recinto: "Microterrário Isolado", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1550505393-fa197235d94a?w=800&auto=format&fit=crop&q=80" },
-                { id: "400003", nome: "Axolote", especie: "Axolote Albino", recinto: "Aquaterrário 01", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1507727310323-9524c965e6b7?w=800&auto=format&fit=crop&q=80" }
+                { id: "400001", nome: "Kermit", especie: "Sapo-Cururu (Rhinella marina)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "https://www.infoescola.com/wp-content/uploads/2014/03/DSC06557.jpg" },
+                { id: "400002", nome: "Axol", especie: "Axolote (Ambystoma mexicanum)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "https://www.petz.com.br/blog/wp-content/uploads/2019/07/axalote.jpg" },
+                { id: "400003", nome: "Dart", especie: "Sapo-Boi-Azul (Dendrobates tinctorius)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Dendrobates_azureus_%28Dendrobates_tinctorius%29_Edit.jpg" },
+                { id: "400004", nome: "Glider", especie: "Rã-Arborícola-de-Olhos-Vermelhos (Agalychnis callidryas)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://www.shutterstock.com/shutterstock/videos/1032988691/thumb/8.jpg?ip=x480" },
+                { id: "400005", nome: "Titan", especie: "Sapo-Goliath (Conraua goliath)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "https://todososfatos.com.br/wordpress/wp-content/files/todososfatos.com.br/2022/12/sapo.jpg" },
+                { id: "400006", nome: "Sally", especie: "Salamandra-de-Fogo (Salamandra salamandra)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLzja_9qcrra90E8w5gciQKOE0dgyg90XlKQ&s" },
+                { id: "400007", nome: "Tomato", especie: "Rã-Tomate (Dyscophus antongilii)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "https://media.istockphoto.com/id/1125169341/pt/foto/tomato-frog.jpg?s=612x612&w=0&k=20&c=ZTDeFrJzkwLg09zSYS-I77wKoCnicG278daUceyfH6s=" },
+                { id: "400008", nome: "Pacman", especie: "Sapo-Chifrudo-Cranwelli (Ceratophrys cranwelli)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "https://s2.glbimg.com/O8ubSuabJUT28YmCMY--KcQCz1Y=/512x320/smart/e.glbimg.com/og/ed/f/original/2018/11/06/6315952681_57b93e3d84_b.jpg" },
+                { id: "400009", nome: "Blink", especie: "Rã- de-Vidro (Hyalinobatrachium fleischmanni)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "imagens/ra_vidro.jpg" },
+                { id: "400010", nome: "Slime", especie: "Salamandra-Tigre (Ambystoma tigrinum)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "imagens/salamandra_tigre.jpg" },
+                { id: "400011", nome: "Lula", especie: "Rã-Pimenta (Leptodactylus labyrinthicus)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "imagens/ra_pimenta.jpg" },
+                { id: "400012", nome: "Proteus", especie: "Olm (Proteus anguinus)", recinto: "Recinto 16 - Caverna Aquática", saude: "Em Observação", photo: "imagens/olm.jpg" },
+                { id: "400013", nome: "Mud", especie: "Cachorro-d'água (Necturus maculosus)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "imagens/necturus.jpg" },
+                { id: "400014", nome: "Moss", especie: "Rã-Musgo-Vietnamita (Theloderma corticale)", recinto: "Recinto 9 - Selva Tropical Oculta", saude: "Excelente / Estável", photo: "imagens/ra_musgo.jpg" },
+                { id: "400015", nome: "Claw", especie: "Rã-de-Unhas-Africana (Xenopus laevis)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "imagens/ra_unhas.jpg" },
+                { id: "400016", nome: "Waxy", especie: "Perereca-Macaco-Cera (Phyllomedusa sauvagii)", recinto: "Recinto 4 - Eco-Cerrado", saude: "Excelente / Estável", photo: "imagens/perereca_cera.jpg" },
+                { id: "400017", nome: "Golden", especie: "Rã-Dourada-do-Panamá (Atelopus zeteki)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Tratamento Clínico", photo: "imagens/ra_dourada.jpg" },
+                { id: "400018", nome: "Pepper", especie: "Sapo-Infundíbulo (Scythrophrys sawayae)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "imagens/sapo_infundibulo.jpg" },
+                { id: "400019", nome: "Newt", especie: "Tritão-Crestado (Triturus cristatus)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "imagens/tritao.jpg" },
+                { id: "400020", nome: "Caecilia", especie: "Cobra-Cega (Siphonops annulatus)", recinto: "Recinto 15 - Laboratório Anfíbio", saude: "Excelente / Estável", photo: "imagens/cobra_cega.jpg" }
             ],
+
             "Peixes": [
-                { id: "500001", nome: "Bruce", especie: "Tubarão-Lixa", recinto: "Aquário Oceânico Principal", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1560275669-46c5a88d6a4c?w=800&auto=format&fit=crop&q=80" },
-                { id: "500002", nome: "Nemo", especie: "Peixe-Palhaço", recinto: "Recife de Corais Vivo", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1524704654690-b56c05c78a02?w=800&auto=format&fit=crop&q=80" },
-                { id: "500003", nome: "Dory", especie: "Cirurgião-Patela", recinto: "Recife de Corais Vivo", saude: "Excelente / Estável", foto: "https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=800&auto=format&fit=crop&q=80" }
+                { id: "500001", nome: "Poseidon", especie: "Pirarucu (Arapaima gigas)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "imagens/pirarucu.jpg" },
+                { id: "500002", nome: "Bruce", especie: "Tubarão-Touro (Carcharhinus leucas)", recinto: "Recinto 17 - Grande Aquário Oceânico", saude: "Excelente / Estável", photo: "imagens/tubarao_touro.jpg" },
+                { id: "500003", nome: "Nemo", especie: "Peixe-Palhaço (Amphiprion ocellaris)", recinto: "Recinto 18 - Recife de Corais", saude: "Excelente / Estável", photo: "imagens/peixe_palhaco.jpg" },
+                { id: "500004", nome: "Dory", especie: "Cirurgião-Patela (Paracanthurus hepatus)", recinto: "Recinto 18 - Recife de Corais", saude: "Excelente / Estável", photo: "imagens/cirurgiao_patela.jpg" },
+                { id: "500005", nome: "Byte", especie: "Piranha-Vermelha (Pygocentrus nattereri)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "imagens/piranha.jpg" },
+                { id: "500006", nome: "Volt", especie: "Poraquê/Peixe-Elétrico (Electrophorus electricus)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "imagens/poraque.jpg" },
+                { id: "500007", nome: "Stinger", especie: "Arraia-Motor (Potamotrygon motoro)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "imagens/arraia.jpg" },
+                { id: "500008", nome: "Samurai", especie: "Peixe-Leão (Pterois volitans)", recinto: "Recinto 17 - Grande Aquário Oceânico", saude: "Excelente / Estável", photo: "imagens/peixe_leao.jpg" },
+                { id: "500009", nome: "Gladiador", especie: "Peixe-Espada (Xiphias gladius)", recinto: "Recinto 17 - Grande Aquário Oceânico", saude: "Excelente / Estável", photo: "imagens/peixe_espada.jpg" },
+                { id: "500010", nome: "Manta", especie: "Arraia-Manta (Mobula birostris)", recinto: "Recinto 17 - Grande Aquário Oceânico", saude: "Excelente / Estável", photo: "imagens/arraia_manta.jpg" },
+                { id: "500011", nome: "Goliath", especie: "Tigre-Goliath (Hydrocynus goliath)", recinto: "Recinto 16 - Caverna Aquática", saude: "Excelente / Estável", photo: "imagens/peixe_tigre.jpg" },
+                { id: "500012", nome: "Jaws", especie: "Grande-Tubarão-Branco (Carcharodon carcharias)", recinto: "Recinto 17 - Grande Aquário Oceânico", saude: "Em Observação", photo: "imagens/tubarao_branco.jpg" },
+                { id: "500013", nome: "Puffer", especie: "Baiacu-de-Espinho (Diodon hystrix)", recinto: "Recinto 18 - Recife de Corais", saude: "Excelente / Estável", photo: "imagens/baiacu.jpg" },
+                { id: "500014", nome: "Goldie", especie: "Peixe-Dourado (Carassius auratus)", recinto: "Recinto 19 - Lago Ornamental", saude: "Excelente / Estável", photo: "imagens/peixe_dourado.jpg" },
+                { id: "500015", nome: "Koi", especie: "Carpa-Brocal (Cyprinus carpio)", recinto: "Recinto 19 - Lago Ornamental", saude: "Excelente / Estável", photo: "imagens/carpa.jpg" },
+                { id: "500016", nome: "Archer", especie: "Peixe-Arqueiro (Toxotes jaculatrix)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "imagens/peixe_arqueiro.jpg" },
+                { id: "500017", nome: "Lung", especie: "Peixe-Pulmonado-Africano (Protopterus annectens)", recinto: "Recinto 16 - Caverna Aquática", saude: "Excelente / Estável", photo: "imagens/peixe_pulmonado.jpg" },
+                { id: "500018", nome: "Discus", especie: "Peixe-Acará-Disco (Symphysodon aequifasciatus)", recinto: "Recinto 5 - Complexo Fluvial", saude: "Excelente / Estável", photo: "imagens/acara_disco.jpg" },
+                { id: "500019", nome: "Dragonfish", especie: "Peixe-Dragão-Negro (Idiacanthus atlanticus)", recinto: "Recinto 16 - Caverna Aquática", saude: "Excelente / Estável", photo: "imagens/peixe_dragao.jpg" },
+                { id: "500020", nome: "Paddler", especie: "Peixe-Espátula (Polyodon spathula)", recinto: "Recinto 16 - Caverna Aquática", saude: "Excelente / Estável", photo: "imagens/peixe_espatula.jpg" }
             ]
         };
 
-        let sequencialIds = 600000;
-
-        function atualizarContadores() {
-            for (let grupo in bancoAnimais) {
-                document.getElementById(`count-${grupo}`).innerText = `${bancoAnimais[grupo].length} catalogados`;
-            }
-        }
-        window.onload = atualizarContadores;
-
+        // --- SISTEMA DE LOGIN ---
         function handleLogin(event) {
             event.preventDefault();
-            document.getElementById('loginScreen').style.opacity = '0';
-            setTimeout(() => { document.getElementById('loginScreen').style.display = 'none'; }, 400);
+            const loginScreen = document.getElementById('loginScreen');
+            loginScreen.style.opacity = '0';
+            setTimeout(() => {
+                loginScreen.style.display = 'none';
+            }, 400);
         }
 
-        // ALTERNADOR DE ABAS DINÂMICO
-        function switchPage(pageId, element) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
-            
-            document.getElementById('page-' + pageId).classList.add('active');
-            element.classList.add('active');
+        function toggleLoginBlocks(block) {
+            if (block === 'forgot') {
+                document.getElementById('blockLogin').classList.remove('active');
+                document.getElementById('blockForgot').classList.add('active');
+            } else {
+                document.getElementById('blockForgot').classList.remove('active');
+                document.getElementById('blockLogin').classList.add('active');
+            }
+        }
 
-            // Mapeamento de Títulos dinâmicos no Cabeçalho
-            const titulos = {
+        function handleResetPassword(event) {
+            event.preventDefault();
+            alert('Link de recuperação enviado para o e-mail informado!');
+            toggleLoginBlocks('login');
+        }
+
+        // --- NAVEGAÇÃO ENTRE ABAS ---
+        function switchPage(pageId, menuItem) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+            
+            document.getElementById(`page-${pageId}`).classList.add('active');
+            menuItem.classList.add('active');
+
+            const titles = {
                 'animais': 'Animais e Grupos Taxonômicos',
-                'trato': 'Registro de Trato Diário e Ocorrências',
-                'dietas': 'Controle Nutricional e Dietas',
-                'veterinaria': 'Prontuário e Atendimento Veterinário',
-                'recintos': 'Mapeamento e Segurança de Recintos',
-                'relatorios': 'Relatórios Populações e Censo Biológico'
+                'trato': 'Registro de Trato Diário',
+                'dietas': 'Controle de Dietas',
+                'veterinaria': 'Prontuário Clínico',
+                'recintos': 'Controle de Recintos',
+                'relatorios': 'Relatórios Gerais'
             };
-            document.getElementById('main-title').innerText = titulos[pageId] || "Sistema de Gestão";
+            document.getElementById('main-title').innerText = titles[pageId] || "Sistema ZOO";
         }
 
-        function openModal(id) { document.getElementById(id).classList.add('active'); }
-        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        // --- CONTROLE DE MODAIS ---
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
 
-        // Abre a galeria de fotos do grupo correspondente
-        function openGroupModal(grupoName) {
-            const listagem = bancoAnimais[grupoName] || [];
-            document.getElementById('modal-grupo-titulo').innerText = `Espécimes — ${grupoName} (${listagem.length})`;
-            
-            const galeriaContainer = document.getElementById('modal-grupo-galeria');
-            galeriaContainer.innerHTML = ""; 
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
 
-            listagem.forEach(ani => {
-                const card = document.createElement('div');
-                card.className = 'animal-show-card';
-                card.setAttribute('onclick', `exibirFichaPaginaInteira("${ani.id}", "${grupoName}")`);
-                
-                card.innerHTML = `
-                    <img src="${ani.foto}" class="animal-large-photo" alt="Foto" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=500';">
-                    <div class="animal-show-info">
-                        <div class="animal-show-name">${ani.nome}</div>
-                        <div class="animal-show-id">ID: ${ani.id}</div>
-                    </div>
-                `;
-                galeriaContainer.appendChild(card);
-            });
+        // --- GALERIA POR GRUPO ---
+        function openGroupModal(grupo) {
+            document.getElementById('modal-grupo-titulo').innerText = `Galeria de Animais: ${grupo}`;
+            const galeria = document.getElementById('modal-grupo-galeria');
+            galeria.innerHTML = "";
 
+            const animais = bancoAnimais[grupo] || [];
+
+            if (animais.length === 0) {
+                galeria.innerHTML = "<p style='grid-column: 1/-1; text-align: center; color: #7f8c8d; padding: 20px;'>Nenhum animal cadastrado neste grupo.</p>";
+            } else {
+                animais.forEach(animal => {
+                    const card = document.createElement('div');
+                    card.className = "animal-show-card";
+                    card.onclick = () => abrirFichaPaginaInteira(animal, grupo);
+                    
+                    card.innerHTML = `
+                        <img class="animal-large-photo" src="${animal.photo}" alt="${animal.nome}" onerror="this.src='https://via.placeholder.com/220x200?text=${animal.nome}'">
+                        <div class="animal-show-info">
+                            <div class="animal-show-name">${animal.nome}</div>
+                            <div class="animal-show-especie">${animal.especie}</div>
+                            <div class="animal-show-id">#${animal.id}</div>
+                        </div>
+                    `;
+                    galeria.appendChild(card);
+                });
+            }
             openModal('modalVerGrupo');
         }
 
-        // CARREGA E ABRE A FICHA TÉCNICA COMO UMA PÁGINA INTEIRA
-        function exibirFichaPaginaInteira(idAnimal, grupoName) {
-            const lista = bancoAnimais[grupoName];
-            const animal = lista.find(a => a.id === idAnimal);
+        // --- FICHA TÉCNICA DETALHADA ---
+        function abrirFichaPaginaInteira(animal, grupo) {
+            document.getElementById('ficha-nome').innerText = animal.nome;
+            document.getElementById('ficha-especie').innerText = animal.especie;
+            document.getElementById('ficha-id').innerText = animal.id;
+            document.getElementById('ficha-grupo').innerText = grupo;
+            document.getElementById('ficha-recinto').innerText = animal.recinto;
+            document.getElementById('ficha-saude').innerText = animal.saude;
+            
+            const foto = document.getElementById('ficha-foto');
+            foto.src = animal.photo;
+            foto.onerror = function() { this.src = `https://via.placeholder.com/600x600?text=${animal.nome}`; };
 
-            if(animal) {
-                // Preenche os dados textuais no container esquerdo
-                document.getElementById('ficha-nome').innerText = animal.nome;
-                document.getElementById('ficha-especie').innerText = animal.especie;
-                document.getElementById('ficha-id').innerText = `ID #${animal.id}`;
-                document.getElementById('ficha-grupo').innerText = grupoName;
-                document.getElementById('ficha-recinto').innerText = animal.recinto || "Setor Geral de Preservação";
-                document.getElementById('ficha-saude').innerText = animal.saude || "Excelente / Estável";
-
-                // Atualiza a imagem da direita em tamanho gigante
-                const imgFicha = document.getElementById('ficha-foto');
-                imgFicha.src = animal.foto;
-                imgFicha.onerror = function() { this.src = 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=1000'; };
-
-                // Ativa o container de tela cheia com efeito suave de transição
-                document.getElementById('pageFichaAnimal').classList.add('active');
-            }
+            document.getElementById('pageFichaAnimal').classList.add('active');
         }
 
         function fecharFichaPaginaInteira() {
             document.getElementById('pageFichaAnimal').classList.remove('active');
         }
 
+        // --- CADASTRO DE ANIMAIS ---
         function salvarAnimal(event) {
             event.preventDefault();
-            
             const grupo = document.getElementById('ani-grupo').value;
             const nome = document.getElementById('ani-nome').value;
             const especie = document.getElementById('ani-especie').value;
-            const recintoInput = document.getElementById('ani-recinto-input').value;
-            const saudeInput = document.getElementById('ani-saude-input').value;
-            let linkFoto = document.getElementById('ani-foto').value.trim();
+            const recinto = document.getElementById('ani-recinto-input').value;
+            const saude = document.getElementById('ani-saude-input').value;
+            let foto = document.getElementById('ani-foto').value.trim();
 
-            if(!linkFoto) {
-                linkFoto = `https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=800`;
+            if (!foto) {
+                foto = `https://via.placeholder.com/220x200?text=${nome}`;
             }
 
-            sequencialIds++;
-            const novoId = String(sequencialIds);
+            const idUnico = Math.floor(new Date().getTime() / 1000).toString().substring(4, 10);
+
+            const novoAnimal = { id: idUnico, nome, especie, recinto, saude, photo: foto };
             
-            const novoObjeto = { 
-                id: novoId, 
-                nome: nome, 
-                especie: especie,
-                recinto: recintoInput,
-                saude: saudeInput,
-                foto: linkFoto 
-            };
-            
-            bancoAnimais[grupo].unshift(novoObjeto);
-            atualizarContadores();
+            bancoAnimais[grupo].push(novoAnimal);
+            atualizarContadoresEstatisticos();
             closeModal('modalAnimal');
-            event.target.reset();
             
-            alert(`Sucesso! O animal "${nome}" foi cadastrado.`);
+            event.target.reset();
+            alert(`${nome} foi cadastrado com sucesso no grupo dos ${grupo}!`);
         }
+
+        // --- ATUALIZAÇÃO AUTOMÁTICA DE CONTADORES ---
+        function atualizarContadoresEstatisticos() {
+            let totalGeral = 0;
+            for (const grupo in bancoAnimais) {
+                const count = bancoAnimais[grupo].length;
+                totalGeral += count;
+                const campoContador = document.getElementById(`count-${grupo}`);
+                if (campoContador) {
+                    campoContador.innerText = `${count} catalogados`;
+                }
+            }
+            const campoTotal = document.getElementById('total-pop-count');
+            if (campoTotal) campoTotal.innerText = totalGeral;
+        }
+
+        window.onload = function() {
+            atualizarContadoresEstatisticos();
+        };
     </script>
 </body>
 </html>
